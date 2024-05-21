@@ -3,7 +3,7 @@ import { HiMenuAlt3 } from "react-icons/hi";
 import { SiHomebridge } from "react-icons/si";
 import MenuItems from "./MenuItems";
 
-const Sidebar = () => {
+const Home = () => {
   const [open, setOpen] = useState(true);
 
   const menus = useMemo(
@@ -33,4 +33,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default Home;
