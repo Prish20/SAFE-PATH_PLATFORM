@@ -1,14 +1,17 @@
-import { Routes, Route } from "react-router-dom";
-import Sidebar from "./components/Sidebar";
-import Home from "./pages/Home";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+// import Sidebar from "./components/Sidebar";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 const App = () => {
   return (
-    <div>
-      <Sidebar/>
+    <BrowserRouter>
+      {/* <Sidebar/> */}
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<SignIn />} />
+        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/sign-up" element={<SignUp />} />
       </Routes>
-    </div>
+    </BrowserRouter>
   );
 };
 

@@ -29,9 +29,6 @@ const Sidebar = () => {
         </div>
         <MenuItems menus={menus} open={open} />
       </div>
-      <div className="m-3 text-xl text-gray-900 font-semibold">
-       SafePathk,
-      </div>
     </section>
   );
 };
