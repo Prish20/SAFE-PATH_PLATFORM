@@ -16,19 +16,12 @@ const SignUp = () => {
         </div>
         <form className="w-full">
           <div className="mb-4">
-            <label className="block text-gray-700">Name*</label>
+            <label className="block text-gray-700">Username*</label>
             <input
-              type="username"
+              type="text"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
               placeholder="Enter your name"
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700">Surname*</label>
-            <input
-              type="username"
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-              placeholder="Enter your surname"
+              id="username"
             />
           </div>
           <div className="mb-4">
@@ -37,6 +30,7 @@ const SignUp = () => {
               type="email"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
               placeholder="Enter your email"
+              id="email"
             />
           </div>
           <div className="mb-4">
@@ -45,6 +39,7 @@ const SignUp = () => {
               type="password"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
               placeholder="Enter your password"
+              id="password"
             />
           </div>
           <div className="mb-4"></div>

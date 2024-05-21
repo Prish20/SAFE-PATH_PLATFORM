@@ -19,11 +19,12 @@ const SignIn = () => {
         </div>
         <form className="w-full">
           <div className="mb-4">
-            <label className="block text-gray-700">Email</label>
+            <label className="block text-gray-700">Username</label>
             <input
-              type="email"
+              type="text"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-              placeholder="Enter your email"
+              placeholder="Enter your username"
+              id="username"
             />
           </div>
           <div className="mb-4">
@@ -32,6 +33,7 @@ const SignIn = () => {
               type="password"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
               placeholder="Enter your password"
+              id="password"
             />
           </div>
           <div className="mb-4 text-right">
