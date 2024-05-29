@@ -7,6 +7,7 @@ import {
   signInFailure,
 } from "../redux/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import Oauth from "../components/Oauth";
 
 const SingIn = () => {
   const [formData, setFormData] = useState({});
@@ -92,6 +93,7 @@ const SingIn = () => {
               "Sign In"
             )}
           </Button>
+          <Oauth />
         </form>
         <div className="text-center mt-4">
           <p>
