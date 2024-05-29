@@ -1,22 +1,21 @@
-import  { useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { SiHomebridge } from "react-icons/si";
 import MenuItems from "./MenuItems";
+import Profile from "./Profile";
 
 const Home = () => {
   const [open, setOpen] = useState(true);
 
   const menus = useMemo(
-    () => [
-      { name: "Home", link: "/", icon: SiHomebridge},
-    ],
+    () => [{ name: "Home", link: "/", icon: SiHomebridge }],
     []
   );
 
   return (
     <section className="flex gap-6">
       <div
-        className={`bg-[#0e0e0e] min-h-screen ${
+        className={`bg-[#0e0e0e] min-h-screen relative rounded-br-3xl rounded-tr-3xl ${
           open ? "w-72" : "w-16"
         } duration-500 text-gray-100 px-4`}
       >
@@ -28,6 +27,7 @@ const Home = () => {
           />
         </div>
         <MenuItems menus={menus} open={open} />
+        <Profile open={open} />
       </div>
     </section>
   );
