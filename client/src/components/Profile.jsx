@@ -10,7 +10,7 @@ export default function Profile({ open }) {
     <div
       className={`absolute bottom-0 ${
         open ? "left-0 " : "left-0"
-      } ml-3 mr-2 mb-5 transition-all duration-300 flex items-center`}
+      } ml-3 mr-2 mb-5 transition-all duration-300 flex items-center rounded-full`}
     >
       {currentUser ? (
         <div className="flex items-center space-x-1">

@@ -4,11 +4,11 @@ import { SiHomebridge } from "react-icons/si";
 import MenuItems from "./MenuItems";
 import Profile from "./Profile";
 
-const Home = () => {
+const Sidebar = () => {
   const [open, setOpen] = useState(true);
 
   const menus = useMemo(
-    () => [{ name: "Home", link: "/", icon: SiHomebridge }],
+    () => [{ name: "Home", link: "/home", icon: SiHomebridge }],
     []
   );
 
@@ -33,4 +33,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Sidebar;
