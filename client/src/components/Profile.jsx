@@ -14,7 +14,7 @@ export default function Profile({ open }) {
     >
       {currentUser ? (
         <div className="flex items-center space-x-1">
-          <Avatar alt="profile" img={currentUser.profilePicture} rounded />
+          <Avatar alt="profile" img={currentUser.profilePicture} rounded className="w-10" />
           {open && (
             <div className="text-sm block">
               <p >{currentUser.username}</p>

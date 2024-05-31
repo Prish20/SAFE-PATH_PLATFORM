@@ -8,14 +8,14 @@ const Sidebar = () => {
   const [open, setOpen] = useState(true);
 
   const menus = useMemo(
-    () => [{ name: "Home", link: "/home", icon: SiHomebridge }],
+    () => [{ name: "Dashboard", link: "/dashboard", icon: SiHomebridge }],
     []
   );
 
   return (
     <section className="flex gap-6">
       <div
-        className={`bg-[#0e0e0e] min-h-screen relative rounded-br-3xl rounded-tr-3xl ${
+        className={`bg-[#0e0e0e] ml-2 mt-5 mb-5 min-h-screen relative rounded-3xl ${
           open ? "w-72" : "w-16"
         } duration-500 text-gray-100 px-4`}
       >
