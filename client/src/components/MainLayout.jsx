@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const MainLayout = ({ children }) => {
   const location = useLocation();
-  const isAuthPage = location.pathname === '/home' || location.pathname === '/sign-in' || location.pathname === '/sign-up';
+  const isAuthPage = location.pathname === '/overview' || location.pathname === '/sign-in' || location.pathname === '/sign-up';
 
   return (
     <div className="flex">

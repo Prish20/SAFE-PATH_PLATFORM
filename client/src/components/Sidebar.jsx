@@ -8,7 +8,11 @@ const Sidebar = () => {
   const [open, setOpen] = useState(true);
 
   const menus = useMemo(
-    () => [{ name: "Dashboard", link: "/dashboard", icon: SiHomebridge }],
+    () => [
+      { name: "Home", link: "/home", icon: SiHomebridge },
+      { name: "Dashboard", link: "/dashboard", icon: SiHomebridge },
+
+    ],
     []
   );
 
