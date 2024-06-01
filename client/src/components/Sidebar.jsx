@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { HiMenuAlt3 } from "react-icons/hi";
-import { SiHomebridge } from "react-icons/si";
+import { MdHomeMax } from "react-icons/md";
 import MenuItems from "./MenuItems";
 import Profile from "./Profile";
 
@@ -9,8 +9,8 @@ const Sidebar = () => {
 
   const menus = useMemo(
     () => [
-      { name: "Home", link: "/home", icon: SiHomebridge },
-      { name: "Dashboard", link: "/dashboard", icon: SiHomebridge },
+      { name: "Home", link: "/home", icon: MdHomeMax },
+      { name: "Dashboard", link: "/dashboard", icon: MdHomeMax },
 
     ],
     []

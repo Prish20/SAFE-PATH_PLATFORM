@@ -1,10 +1,11 @@
-import { Routes, Route, BrowserRouter, Navigate } from 'react-router-dom';
-import SignIn from './pages/SignIn';
-import SignUp from './pages/SignUp';
-import MainLayout from './components/MainLayout';
-import Dashboard from './pages/Dashboard';
-import Overview from './pages/Overview';
-import Home from './pages/Home';
+import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import MainLayout from "./components/MainLayout";
+import Dashboard from "./pages/Dashboard";
+import Overview from "./pages/Overview";
+import Home from "./pages/Home";
+import PrivateRoute from "./components/PrivateRoute";
 
 const App = () => {
   return (
@@ -15,7 +16,9 @@ const App = () => {
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/overview" element={<Overview />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Route>
           <Route path="/home" element={<Home />} />
         </Routes>
       </MainLayout>
