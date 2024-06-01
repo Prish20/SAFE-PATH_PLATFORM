@@ -1,13 +1,11 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import userReducer from "./user/userSlice";
-import educationalContentReducer from "./education/educationalContentSlice";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 // Combine reducers
 const rootReducer = combineReducers({
   user: userReducer,
-  educationalContent: educationalContentReducer,
 });
 
 // Persist configuration

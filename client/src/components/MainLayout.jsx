@@ -1,15 +1,20 @@
-import { useLocation } from 'react-router-dom';
-import Sidebar from './Sidebar';
-import PropTypes from 'prop-types';
+import { useLocation } from "react-router-dom";
+import Sidebar from "./Sidebar";
+import PropTypes from "prop-types";
 
 const MainLayout = ({ children }) => {
   const location = useLocation();
-  const isAuthPage = location.pathname === '/overview' || location.pathname === '/sign-in' || location.pathname === '/sign-up';
+  const isAuthPage =
+    location.pathname === "/overview" || location.pathname === "/sign-in";
 
   return (
     <div className="flex">
-      {!isAuthPage && <Sidebar />}
-      <div className={`flex-grow ${isAuthPage ? 'w-full' : ''}`}>
+      {!isAuthPage && (
+        <div className="hidden md:block">
+          <Sidebar />
+        </div>
+      )}
+      <div className={`flex-grow ${isAuthPage ? "w-full" : ""}`}>
         {children}
       </div>
     </div>
