@@ -1,6 +1,7 @@
 import { Alert, Button, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   updateStart,
   updateSuccess,
@@ -10,7 +11,7 @@ import { useDispatch } from "react-redux";
 
 export default function DashProfile() {
   const [formData, setFormData] = useState({});
-  const { currentUser } = useSelector((state) => state.user);
+  const { currentUser, loading } = useSelector((state) => state.user);
   const [updateUserSuccess, setUpdateUserSuccess] = useState(false);
   const [updateUserError, setUpdateUserError] = useState(false);
   const dispatch = useDispatch();
@@ -60,6 +61,7 @@ export default function DashProfile() {
         </div>
         <TextInput
           type="text"
+          sizing="sm"
           id="username"
           placeholder="username"
           defaultValue={currentUser.username}
@@ -67,6 +69,7 @@ export default function DashProfile() {
         />
         <TextInput
           type="email"
+          sizing="sm"
           id="email"
           placeholder="email"
           defaultValue={currentUser.email}
@@ -74,13 +77,26 @@ export default function DashProfile() {
         />
         <TextInput
           type="password"
+          sizing="sm"
           id="password"
           placeholder="password"
           onChange={handleChange}
         />
-        <Button type="submit" gradientDuoTone="purpleToBlue" outline>
-          Update
+        <Button type="submit" gradientDuoTone="purpleToBlue" outline disabled={loading}>
+          {loading ? "Loading..." : "Update"}
         </Button>
+        {currentUser.isAdmin && (
+          <Link to={'/education-content'}>
+            <Button
+              type="button"
+              gradientDuoTone="purpleToPink"
+              className="w-full"
+              outline
+            >
+              Create Education Content
+            </Button>
+          </Link>
+        )}
       </form>
       <div className="text-red-500 flex justify-between mt-5">
         <span className="cursor-pointer">Delete Account</span>
