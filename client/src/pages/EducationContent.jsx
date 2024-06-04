@@ -11,12 +11,17 @@ import {
 import { app } from "../firebase";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import {useNavigate} from "react-router-dom";
 
 export default function EducationContent() {
   const [file, setFile] = useState(null);
+  const navigate = useNavigate();
+  const [publishError, setPublishError] = useState(null);
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
   const [imageUploadError, setImageUploadError] = useState(null);
   const [formData, setFormData] = useState({});
+
+
   const handleUploadImage = async () => {
     try {
       if (!file) {
@@ -53,24 +58,50 @@ export default function EducationContent() {
       console.log(error);
     }
   };
+
+  const handleSubmit =async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch("/api/post/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setPublishError(data.message);
+        return;
+      } 
+      if (res.ok) {
+        setPublishError(null);
+        navigate(`/post/${data.slug}`);
+      }
+    } catch (error) {
+      setPublishError("Failed to create post");
+    }
+  };
   return (
     <div className="p-3 max-w-3xl mx-auto min-h-screen">
       <h1 className="text-center text-4xl my-7 font-bold">Create a Post</h1>
-      <form className="flex flex-col gap-4">
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-4 sm:flex-row justify-between">
           <div className="relative flex-1">
             <TextInput
               type="text"
-              id="Title"
+              id="title"
               required
-              placeholder="title"
+              placeholder="Title"
               sizing="sm"
               shadow
               className="p-4 text-center placeholder-center m-5"
+              onChange={(e) => setFormData({ ...formData, title: e.target.value })}
             />
             <Select
               sizing="sm"
               className="p-4 text-center placeholder-center m-5"
+              onChange={(e) => setFormData({ ...formData, category: e.target.value })}
             >
               <option value="Road Safety">Road Safety</option>
               <option value="Driving Tips">Driving Tips</option>
@@ -128,11 +159,20 @@ export default function EducationContent() {
           required
           placeholder="Write something..."
           className="h-72 mb-12 m-5"
+          onChange={(value) => setFormData({ ...formData, content: value })}
         />
-        <Button gradientDuoTone="purpleToBlue" outline className="m-5">
+        <Button gradientDuoTone="purpleToBlue" outline className="m-5" type="submit">
           Publish
         </Button>
       </form>
+        {publishError && (
+          <div
+            className="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800 text-center m-5"
+            role="alert"
+          >
+            {publishError}
+          </div>
+        )}
     </div>
   );
 }
