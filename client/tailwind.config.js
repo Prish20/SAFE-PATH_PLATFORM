@@ -1,4 +1,6 @@
 import flowbitePlugin from "flowbite/plugin";
+import tailwindScrollbar from 'tailwind-scrollbar';
+
 /**
  * @type {import('tailwindcss').Config}
  */
@@ -20,7 +22,10 @@ export default {
         hero2: "url(src/assets/images/hero2.jpg)",
         hero3: "url(src/assets/images/hero3.jpg)",
       },
-      plugins: [flowbitePlugin],
     },
   },
+  plugins: [
+    flowbitePlugin,
+    tailwindScrollbar,
+  ],
 };

@@ -25,9 +25,9 @@ export default function DashSidebar() {
   };
 
   return (
-    <div className="flex md:pl-28">
-      <Sidebar aria-label="Sidebar with profile and sign-out options">
-        <Sidebar.Items>
+    <div className="flex md:pl-5 lg:pl-10">
+      <Sidebar aria-label="Sidebar with profile and sign-out options" className="">
+        <Sidebar.Items className="m-4">
           <Sidebar.ItemGroup className="flex flex-col gap-3 self-center">
             <Link to="/dashboard?tab=profile">
               <motion.div
@@ -45,16 +45,16 @@ export default function DashSidebar() {
                 >
                   <span>Profile</span>
                   {currentUser.isAdmin && (
-                    <span className="rounded bg-black ml-10 text-sm text-white ">Admin</span>
+                    <span className="rounded bg-black ml-10 text-sm text-white">Admin</span>
                   )}
                   {!currentUser.isAdmin && (
-                    <span className="border ml-2 text-sm text-gray-500 ">User</span>
+                    <span className="border ml-2 text-sm text-gray-500">User</span>
                   )}
                 </Sidebar.Item>
               </motion.div>
             </Link>
-            <Link to="/dashboard?tab=posts">
-              {currentUser.isAdmin && (
+            {currentUser.isAdmin && (
+              <Link to="/dashboard?tab=posts">
                 <motion.div
                   initial="hidden"
                   animate="visible"
@@ -68,11 +68,11 @@ export default function DashSidebar() {
                     className="flex items-center space-x-1 cursor-pointer hover:text-red-500 outline"
                     as="div"
                   >
-                    <span>Euducation Posts</span>
+                    <span>Education Posts</span>
                   </Sidebar.Item>
                 </motion.div>
-              )}
-            </Link>
+              </Link>
+            )}
             <motion.div
               initial="hidden"
               animate="visible"

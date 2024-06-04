@@ -5,7 +5,7 @@ import MenuItems from "./MenuItems";
 import Profile from "./Profile";
 
 const Sidebar = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const menus = useMemo(
     () => [
@@ -27,7 +27,7 @@ const Sidebar = () => {
           <HiMenuAlt3
             size={26}
             className="cursor-pointer"
-            onClick={() => setOpen(!open)}
+            onClick={() => setOpen(open)}
           />
         </div>
         <MenuItems menus={menus} open={open} />

@@ -15,7 +15,7 @@ export default function Dashboard() {
     }
   }, [location.search]);
   return (
-    <div className="min-h-screen flex flex-col md:flex-row self-center">
+    <div className="flex flex-col md:flex-row self-center mt-5">
       <div className="flex justify-center md:justify-start">
         {/* Dashboard */}
         <DashSidebar />
