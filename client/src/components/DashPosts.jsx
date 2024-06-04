@@ -1,9 +1,13 @@
+import { Button, Modal } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { HiOutlineExclamationCircle } from "react-icons/hi";
 
 export default function DashPosts() {
   const { currentUser } = useSelector((state) => state.user);
+  const [showModal, setShowModal] = useState(false);
+  const [postIdToDelete, setPostIdToDelete] = useState("");
   const [userPosts, setUserPosts] = useState([]);
   console.log(userPosts);
 
@@ -25,6 +29,28 @@ export default function DashPosts() {
       fetchPosts();
     }
   }, [currentUser?._id, currentUser?.isAdmin]);
+
+  const handleDeletePost = async () => {
+    setShowModal(false);
+    try {
+      const res = await fetch(
+        `/api/post/deletepost/${postIdToDelete}/${currentUser._id}`,
+        {
+          method: 'DELETE',
+        }
+      );
+      const data = await res.json();
+      if (!res.ok) {
+        console.log(data.message);
+      } else {
+        setUserPosts((prev) =>
+          prev.filter((post) => post._id !== postIdToDelete)
+        );
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
     <div className="p-4">
@@ -63,18 +89,18 @@ export default function DashPosts() {
               </div>
               <div className="md:col-span-1">
                 <Link to={`/post/${post.slug}`}>
-                <div className="text-xs md:text-base text-gray-500 dark:text-gray-400">
-                  Post Title
-                </div>
-                <div>{post.title}</div>
+                  <div className="text-xs md:text-base text-gray-500 dark:text-gray-400">
+                    Post Title
+                  </div>
+                  <div>{post.title}</div>
                 </Link>
               </div>
               <div className="md:col-span-1">
                 <Link to={`/post/${post.slug}`}>
-                <div className="text-xs md:text-base text-gray-500 dark:text-gray-400">
-                  Category
-                </div>
-                <div>{post.category}</div>
+                  <div className="text-xs md:text-base text-gray-500 dark:text-gray-400">
+                    Category
+                  </div>
+                  <div>{post.category}</div>
                 </Link>
               </div>
               <div className="md:col-span-1">
@@ -82,16 +108,22 @@ export default function DashPosts() {
                   Edit
                 </div>
                 <Link to={`/update-post/${post._id}`}>
-                <button className="text-red-600 hover:text-red-900 hover:underline">
-                  Edit
-                </button>
+                  <button className="text-red-600 hover:text-red-900 hover:underline">
+                    Edit
+                  </button>
                 </Link>
               </div>
               <div className="md:col-span-1">
                 <div className="text-xs md:text-base text-gray-500 dark:text-gray-400">
                   Delete
                 </div>
-                <button className="text-blue-600 hover:text-blue-900 hover:underline">
+                <button className="text-blue-600 hover:text-blue-900 hover:underline"
+                onClick={() => {
+                  setShowModal(true);
+                  setPostIdToDelete(post._id);
+                
+                }}
+                >
                   Delete
                 </button>
               </div>
@@ -101,6 +133,33 @@ export default function DashPosts() {
       ) : (
         <p className="text-2xl text-center">No Posts</p>
       )}
+      <Modal
+        show={showModal}
+        onClose={() => setShowModal(false)}
+        popup
+        size="md"
+        className="mx-auto self-center"
+      >
+        <Modal.Header />
+        <Modal.Body>
+          <div className="text-center">
+            <HiOutlineExclamationCircle className="h-14 w-14 text-gray-400 dark:text-gray-200 mb-4 mx-auto" />
+            <h3 className="mb-5 text-lg text-gray-500 dark:text-gray-400">
+              Are you sure you want to this post?
+            </h3>
+            <div className="flex justify-center gap-4">
+              <Button className="text-red-600" onClick={handleDeletePost}>
+                Yes, I&apos;m sure
+              </Button>
+              <Button color="gray" onClick={() => setShowModal(false)}>
+                No, cancel
+              </Button>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 }
+
+
