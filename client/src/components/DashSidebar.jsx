@@ -39,6 +39,7 @@ export default function DashSidebar() {
                   active={tab === "profile"}
                   icon={HiUser}
                   className="flex items-center space-x-2 outline"
+                  as="div"
                 >
                   <span>Profile</span>
                   <span className="ml-2 text-sm text-gray-500">user</span>
