@@ -1,12 +1,14 @@
 import { Sidebar } from "flowbite-react";
 import { useEffect, useState } from "react";
-import { HiArrowSmRight, HiUser } from "react-icons/hi";
+import { HiArrowSmRight, HiDocumentText, HiUser } from "react-icons/hi";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useSelector } from "react-redux";
 
 export default function DashSidebar() {
   const location = useLocation();
   const [tab, setTab] = useState("");
+  const { currentUser } = useSelector((state) => state.user);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -38,13 +40,38 @@ export default function DashSidebar() {
                 <Sidebar.Item
                   active={tab === "profile"}
                   icon={HiUser}
-                  className="flex items-center space-x-2 outline"
+                  className="flex items-center space-x-2 outline hover:text-red-500"
                   as="div"
                 >
                   <span>Profile</span>
-                  <span className="ml-2 text-sm text-gray-500">user</span>
+                  {currentUser.isAdmin && (
+                    <span className="rounded bg-black ml-10 text-sm text-white ">Admin</span>
+                  )}
+                  {!currentUser.isAdmin && (
+                    <span className="border ml-2 text-sm text-gray-500 ">User</span>
+                  )}
                 </Sidebar.Item>
               </motion.div>
+            </Link>
+            <Link to="/dashboard?tab=posts">
+              {currentUser.isAdmin && (
+                <motion.div
+                  initial="hidden"
+                  animate="visible"
+                  whileHover="hover"
+                  variants={itemVariants}
+                  transition={{ duration: 0.5 }}
+                >
+                  <Sidebar.Item
+                    active={tab === "posts"}
+                    icon={HiDocumentText}
+                    className="flex items-center space-x-1 cursor-pointer hover:text-red-500 outline"
+                    as="div"
+                  >
+                    <span>Euducation Posts</span>
+                  </Sidebar.Item>
+                </motion.div>
+              )}
             </Link>
             <motion.div
               initial="hidden"
