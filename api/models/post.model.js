@@ -22,6 +22,7 @@ const postSchema = new mongoose.Schema(
     },
     category: {
       type: String,
+      default: "Road Safety",
       required: true,
     },
     slug: {
