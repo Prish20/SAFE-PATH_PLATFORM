@@ -1,16 +1,20 @@
 import { useState, useMemo } from "react";
 import { HiMenuAlt3 } from "react-icons/hi";
-import { MdHomeMax } from "react-icons/md";
 import MenuItems from "./MenuItems";
 import Profile from "./Profile";
-
+import { LuLayoutDashboard } from "react-icons/lu";
+import { CiHome } from "react-icons/ci";
+import { MdReport } from "react-icons/md";
+import { MdLibraryBooks } from "react-icons/md";
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
 
   const menus = useMemo(
     () => [
-      { name: "Home", link: "/home", icon: MdHomeMax },
-      { name: "Dashboard", link: "/dashboard", icon: MdHomeMax },
+      { name: "Home", link: "/home", icon: CiHome },
+      { name: "Dashboard", link: "/dashboard?tab=profile", icon: LuLayoutDashboard },
+      { name: "Incidents", link: "/incidents", icon: MdReport },
+      { name: "Learning", link: "/learning", icon: MdLibraryBooks },
 
     ],
     []

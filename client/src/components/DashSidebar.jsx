@@ -4,6 +4,7 @@ import { HiArrowSmRight, HiDocumentText, HiOutlineUserGroup, HiUser } from "reac
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
+import { MdReport } from "react-icons/md";
 
 export default function DashSidebar() {
   const location = useLocation();
@@ -63,7 +64,7 @@ export default function DashSidebar() {
               >
                 <Sidebar.Item
                   active={tab === "reportincident"}
-                  icon={HiUser}
+                  icon={MdReport}
                   className="flex items-center space-x-2 outline hover:text-red-500"
                   as="div"
                 >
