@@ -10,6 +10,7 @@ import OnlyAdminPrivateRoute from "./components/OnlyADminPrivateRoute";
 import EducationContent from "./pages/EducationContent";
 import UpdatePost from "./pages/updatePost";
 import IncidentsPage from "./pages/Incidents";
+import LearningPage from "./pages/Learning";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/overview" element={<Overview />} />
           <Route element={<PrivateRoute />}>
             <Route path="/incidents" element={<IncidentsPage />} />
+            <Route path="/learning" element={<LearningPage />} />
             <Route path="/dashboard" element={<Dashboard />} />
           </Route>
           <Route element={<OnlyAdminPrivateRoute />}>
