@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import PrivateRoute from "./components/PrivateRoute";
 import OnlyAdminPrivateRoute from "./components/OnlyADminPrivateRoute";
 import EducationContent from "./pages/EducationContent";
+import UpdatePost from "./pages/updatePost";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
           </Route>
           <Route element={<OnlyAdminPrivateRoute />}>
             <Route path="/education-content" element={<EducationContent/>} />
+            <Route path="/update-post/:postId" element={<UpdatePost/>} />
           </Route>
           <Route path="/home" element={<Home />} />
         </Routes>
