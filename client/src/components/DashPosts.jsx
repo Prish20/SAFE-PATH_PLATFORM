@@ -9,8 +9,7 @@ export default function DashPosts() {
   const [showModal, setShowModal] = useState(false);
   const [postIdToDelete, setPostIdToDelete] = useState("");
   const [userPosts, setUserPosts] = useState([]);
-  console.log(userPosts);
-
+  
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -55,7 +54,7 @@ export default function DashPosts() {
   return (
     <div className="p-4">
       {currentUser?.isAdmin && userPosts.length > 0 ? (
-        <div className="shadow-md sm:rounded-lg max-h-screen overflow-y-scroll">
+        <div className="shadow-md sm:rounded-lg max-h-screen overflow-y-auto scrollbar-thin scrollbar-thumb-gray-900 scrollbar-track-gray-100">
           <div className="hidden md:grid grid-cols-6 bg-gray-50 dark:bg-gray-700 text-xs text-gray-700 font-bold uppercase dark:text-gray-400">
             <div className="px-4 py-3">Date updated</div>
             <div className="px-4 py-3">Post Image</div>
@@ -117,12 +116,12 @@ export default function DashPosts() {
                 <div className="text-xs md:text-base text-gray-500 dark:text-gray-400">
                   Delete
                 </div>
-                <button className="text-blue-600 hover:text-blue-900 hover:underline"
-                onClick={() => {
-                  setShowModal(true);
-                  setPostIdToDelete(post._id);
-                
-                }}
+                <button
+                  className="text-blue-600 hover:text-blue-900 hover:underline"
+                  onClick={() => {
+                    setShowModal(true);
+                    setPostIdToDelete(post._id);
+                  }}
                 >
                   Delete
                 </button>
@@ -145,7 +144,7 @@ export default function DashPosts() {
           <div className="text-center">
             <HiOutlineExclamationCircle className="h-14 w-14 text-gray-400 dark:text-gray-200 mb-4 mx-auto" />
             <h3 className="mb-5 text-lg text-gray-500 dark:text-gray-400">
-              Are you sure you want to this post?
+              Are you sure you want to delete this post?
             </h3>
             <div className="flex justify-center gap-4">
               <Button className="text-red-600" onClick={handleDeletePost}>
@@ -161,5 +160,3 @@ export default function DashPosts() {
     </div>
   );
 }
-
-
