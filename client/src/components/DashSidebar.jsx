@@ -53,6 +53,24 @@ export default function DashSidebar() {
                 </Sidebar.Item>
               </motion.div>
             </Link>
+            <Link to="/dashboard?tab=reportincident">
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                whileHover="hover"
+                variants={itemVariants}
+                transition={{ duration: 0.5 }}
+              >
+                <Sidebar.Item
+                  active={tab === "reportincident"}
+                  icon={HiUser}
+                  className="flex items-center space-x-2 outline hover:text-red-500"
+                  as="div"
+                >
+                  <span>Report Incident</span>
+                </Sidebar.Item>
+              </motion.div>
+            </Link>
             {currentUser.isAdmin && (
               <Link to="/dashboard?tab=posts">
                 <motion.div
