@@ -1,6 +1,6 @@
 import { Sidebar } from "flowbite-react";
 import { useEffect, useState } from "react";
-import { HiArrowSmRight, HiDocumentText, HiUser } from "react-icons/hi";
+import { HiArrowSmRight, HiDocumentText, HiOutlineUserGroup, HiUser } from "react-icons/hi";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
@@ -69,6 +69,26 @@ export default function DashSidebar() {
                     as="div"
                   >
                     <span>Education Posts</span>
+                  </Sidebar.Item>
+                </motion.div>
+              </Link>
+            )}
+            {currentUser.isAdmin && (
+              <Link to="/dashboard?tab=users">
+                <motion.div
+                  initial="hidden"
+                  animate="visible"
+                  whileHover="hover"
+                  variants={itemVariants}
+                  transition={{ duration: 0.5 }}
+                >
+                  <Sidebar.Item
+                    active={tab === "users"}
+                    icon={HiOutlineUserGroup}
+                    className="flex items-center space-x-1 cursor-pointer hover:text-red-500 outline"
+                    as="div"
+                  >
+                    <span>Users</span>
                   </Sidebar.Item>
                 </motion.div>
               </Link>
