@@ -3,11 +3,19 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import DOMPurify from "dompurify";
 import { Button, Modal } from "flowbite-react";
+import ResponsiveHeader from "../components/ResponsiveHeader";
+import useWindowSize from "../Hooks/useWindowSize";
+import { useSelector } from "react-redux";
+import ResponsiveNav from "../components/ResponsiveNav";
+
 
 export default function LearningPage() {
+  const { currentUser } = useSelector((state) => state.user);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedPost, setSelectedPost] = useState(null);
+  const size = useWindowSize();
+
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -44,7 +52,10 @@ export default function LearningPage() {
 
   return (
     <div className="p-4 max-w-screen-lg mx-auto min-h-screen">
-      <h1 className="text-3xl font-bold mb-6 text-center">Learning Posts</h1>
+      <div className="mb-5">
+        {size.width < 768 && (currentUser.isAdmin ? <ResponsiveNav /> : <ResponsiveHeader />)}
+      </div>
+      <h1 className="text-3xl font-bold mb-6 text-center">Eucational Posts</h1>
       <div className="flex flex-col lg:flex-row gap-4">
         <div className=" max-h-[calc(100vh-150px)] overflow-y-auto scrollbar-hidden">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">

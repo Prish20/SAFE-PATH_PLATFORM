@@ -12,6 +12,8 @@ import { app } from "../firebase";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import {useNavigate} from "react-router-dom";
+import useWindowSize from "../Hooks/useWindowSize";
+import ResponsiveNav from "../components/ResponsiveNav";
 
 export default function EducationContent() {
   const [file, setFile] = useState(null);
@@ -82,7 +84,10 @@ export default function EducationContent() {
       setPublishError("Failed to create post");
     }
   };
+  const size = useWindowSize();
   return (
+    <>
+    {size.width < 768 && <ResponsiveNav />}
     <div className="p-3 max-w-3xl mx-auto min-h-screen">
       <h1 className="text-center text-4xl my-7 font-bold">Create a Post</h1>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
@@ -174,5 +179,6 @@ export default function EducationContent() {
           </div>
         )}
     </div>
+    </>
   );
 }

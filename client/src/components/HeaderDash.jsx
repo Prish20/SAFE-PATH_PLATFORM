@@ -1,0 +1,149 @@
+import { useState } from "react";
+import { SiHomebridge } from "react-icons/si";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { BsFillMenuButtonWideFill} from "react-icons/bs";
+
+export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { currentUser } = useSelector((state) => state.user);
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+  return (
+    <div >
+      {/* Header */}
+      <header className="bg-[#0e0e0e] text-white py-4 rounded-md">
+        <div className="container mx-auto flex justify-between items-center px-4 md:px-8">
+          <div className="text-2xl font-bold">
+            <span className="flex gap-2 items-center">
+              <SiHomebridge />
+              <Link to="/">SafePath</Link>
+            </span>
+          </div>
+          <div className="flex items-center space-x-4 md:hidden">
+            {currentUser && (
+              <div className="rounded-full overflow-hidden w-8 h-8">
+                <img
+                  src={currentUser.profilePicture}
+                  alt="profile"
+                  className="object-cover w-full h-full"
+                />
+              </div>
+            )}
+            <button
+              onClick={toggleMenu}
+              className="text-white focus:outline-none"
+            >
+              <BsFillMenuButtonWideFill className="w-6 h-6" />
+            </button>
+          </div>
+          <nav className="hidden md:flex items-center space-x-4">
+            <Link
+              to={currentUser ? "/dashboard?tab=profile" : "/sign-in"}
+              className="hover:underline"
+            >
+              Dashboard
+            </Link>
+            <Link to="/about" className="hover:underline">
+              About
+            </Link>
+            <Link to="/contact" className="hover:underline">
+              Contact Us
+            </Link>
+            <motion.div
+              whileHover={{ scale: 1.1 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              {currentUser ? (
+                <Link to="/dashboard?tab=profile">
+                  <div className="rounded-full  w-8 h-8">
+                    <img
+                      src={currentUser.profilePicture}
+                      alt="profile"
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
+                </Link>
+              ) : (
+                <Link
+                  to="/sign-in"
+                  className="px-4 py-2 bg-green-500 rounded hover:bg-green-600"
+                >
+                  Sign In
+                </Link>
+              )}
+            </motion.div>
+          </nav>
+        </div>
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              className="md:hidden bg-[#0e0e0e] text-white px-4 pt-2 pb-4"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            >
+              <div className="flex flex-col items-center">
+                <motion.div
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  className="w-full"
+                >
+                  <Link
+                    to={currentUser ? "/dashboard?tab=profile" : "/sign-in"}
+                    onClick={toggleMenu}
+                    className="block py-2 text-center hover:underline"
+                  >
+                    Dashboard
+                  </Link>
+                </motion.div>
+                <motion.div
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  className="w-full"
+                >
+                  <Link
+                  onClick={toggleMenu}
+                    to="/dashboard?tab=reportincident"
+                    className="block py-2 text-center hover:underline"
+                  >
+                    Report Incidents
+                  </Link>
+                </motion.div>
+                <motion.div
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  className="w-full"
+                >
+                  <Link
+                    to="/incidents"
+                    onClick={toggleMenu}
+                    className="block py-2 text-center hover:underline"
+                  >
+                    Incidents
+                  </Link>
+                </motion.div>
+                <motion.div
+                  whileHover={{ scale: 1.1 }}
+                  onClick={toggleMenu}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  className="w-full"
+                >
+                  <Link
+                    to="/learning"
+                    className="block py-2 text-center hover:underline"
+                  >
+                    Learning
+                  </Link>
+                </motion.div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </header>
+    </div>
+  );
+}
