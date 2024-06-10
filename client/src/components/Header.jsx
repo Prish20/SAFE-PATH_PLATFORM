@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { SiHomebridge } from "react-icons/si";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { SiHomebridge } from "react-icons/si";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,7 +13,7 @@ export default function Header() {
   return (
     <div>
       {/* Header */}
-      <header className="bg-blue-600 text-white py-4">
+      <header className="bg-[#0e0e0e] text-white py-4">
         <div className="container mx-auto flex justify-between items-center px-4 md:px-8">
           <div className="text-2xl font-bold">
             <span className="flex gap-2 items-center">
@@ -92,7 +92,7 @@ export default function Header() {
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
-              className="md:hidden bg-blue-600 text-white px-4 pt-2 pb-4"
+              className="md:hidden bg-[#0e0e0e] text-white px-4 pt-2 pb-4"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}

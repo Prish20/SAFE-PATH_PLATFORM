@@ -3,7 +3,7 @@ import { SiHomebridge } from "react-icons/si";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { BsFillMenuButtonWideFill } from "react-icons/bs";
+import { TiThMenuOutline } from "react-icons/ti";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -36,7 +36,7 @@ export default function Header() {
               onClick={toggleMenu}
               className="text-white focus:outline-none"
             >
-              <BsFillMenuButtonWideFill className="w-6 h-6" />
+              <TiThMenuOutline className="w-6 h-6" />
             </button>
           </div>
         </div>

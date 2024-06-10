@@ -5,11 +5,14 @@ import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import { MdReport } from "react-icons/md";
+import { signoutSuccess } from "../redux/user/userSlice";
+import { useDispatch } from "react-redux";
 
 export default function DashSidebar() {
   const location = useLocation();
   const [tab, setTab] = useState("");
   const { currentUser } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -23,6 +26,22 @@ export default function DashSidebar() {
     hidden: { opacity: 0, y: -10 },
     visible: { opacity: 1, y: 0 },
     hover: { scale: 1.05 },
+  };
+
+  const handleSignout = async () => {
+    try {
+      const res = await fetch('/api/user/signout', {
+        method: 'POST',
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        console.log(data.message);
+      } else {
+        dispatch(signoutSuccess());
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
@@ -121,6 +140,7 @@ export default function DashSidebar() {
             >
               <Sidebar.Item
                 icon={HiArrowSmRight}
+                onClick={handleSignout}
                 className="flex items-center space-x-1 cursor-pointer hover:text-red-500 outline"
               >
                 <span>Sign Out</span>

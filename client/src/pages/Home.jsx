@@ -217,7 +217,7 @@ const Home = () => {
 
       {/* Call to Action Section */}
       <motion.section
-        className="bg-blue-600 text-white py-16 text-center"
+        className="bg-[#0e0e0e] text-white py-16 text-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2, duration: 1 }}
