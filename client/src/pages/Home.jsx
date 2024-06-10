@@ -10,7 +10,7 @@ const Home = () => {
       <Header />
       {/* Hero Section */}
       <motion.section
-        className="bg-gray-100 py-16 text-center"
+        className="bg-gray-100 py-16 text-center mt-20"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}

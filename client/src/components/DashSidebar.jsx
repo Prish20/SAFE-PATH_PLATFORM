@@ -45,7 +45,7 @@ export default function DashSidebar() {
   };
 
   return (
-    <div className="flex md:pl-5 lg:pl-10">
+    <div className="flex md:pl-5 lg:pl-10 ml-20 ">
       <Sidebar aria-label="Sidebar with profile and sign-out options" className="">
         <Sidebar.Items className="m-4">
           <Sidebar.ItemGroup className="flex flex-col gap-3 self-center">

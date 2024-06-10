@@ -4,15 +4,36 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { TiThMenuOutline } from "react-icons/ti";
+import { Button } from "flowbite-react";
+import { signoutSuccess } from "../redux/user/userSlice";
+import { useDispatch } from "react-redux";
+import { ImCross } from "react-icons/im";
 
 export default function Header() {
+  const dispatch = useDispatch();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  const handleSignout = async () => {
+    try {
+      const res = await fetch("/api/user/signout", {
+        method: "POST",
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        console.log(data.message);
+      } else {
+        dispatch(signoutSuccess());
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   return (
-    <div >
+    <div>
       {/* Header */}
       <header className="bg-[#0e0e0e] text-white py-4 rounded-md">
         <div className="container mx-auto flex justify-between items-center px-4 md:px-8">
@@ -36,7 +57,9 @@ export default function Header() {
               onClick={toggleMenu}
               className="text-white focus:outline-none"
             >
-              <TiThMenuOutline className="w-6 h-6" />
+              {isMenuOpen && <ImCross />}
+              {!isMenuOpen && <TiThMenuOutline className="w-6 h-6" />
+              }
             </button>
           </div>
           <nav className="hidden md:flex items-center space-x-4">
@@ -86,7 +109,7 @@ export default function Header() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col items-center mt-3">
                 <motion.div
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300 }}
@@ -95,9 +118,8 @@ export default function Header() {
                   <Link
                     to={currentUser ? "/dashboard?tab=profile" : "/sign-in"}
                     onClick={toggleMenu}
-                    className="block py-2 text-center hover:underline"
                   >
-                    Dashboard
+                    <Button className="w-32 mx-auto mb-2">Dashboard</Button>
                   </Link>
                 </motion.div>
                 <motion.div
@@ -105,12 +127,10 @@ export default function Header() {
                   transition={{ type: "spring", stiffness: 300 }}
                   className="w-full"
                 >
-                  <Link
-                  onClick={toggleMenu}
-                    to="/dashboard?tab=reportincident"
-                    className="block py-2 text-center hover:underline"
-                  >
-                    Report Incidents
+                  <Link onClick={toggleMenu} to="/dashboard?tab=reportincident">
+                    <Button className="w-32 mx-auto mb-2">
+                      Report Incident
+                    </Button>
                   </Link>
                 </motion.div>
                 <motion.div
@@ -118,12 +138,8 @@ export default function Header() {
                   transition={{ type: "spring", stiffness: 300 }}
                   className="w-full"
                 >
-                  <Link
-                    to="/incidents"
-                    onClick={toggleMenu}
-                    className="block py-2 text-center hover:underline"
-                  >
-                    Incidents
+                  <Link to="/incidents" onClick={toggleMenu}>
+                    <Button className="w-32 mx-auto mb-2">Incidents</Button>
                   </Link>
                 </motion.div>
                 <motion.div
@@ -132,12 +148,27 @@ export default function Header() {
                   transition={{ type: "spring", stiffness: 300 }}
                   className="w-full"
                 >
-                  <Link
-                    to="/learning"
-                    className="block py-2 text-center hover:underline"
-                  >
-                    Learning
+                  <Link to="/learning">
+                    <Button className="w-32 mx-auto">Learning</Button>
                   </Link>
+                </motion.div>
+                <motion.div
+                  whileHover={{ scale: 1.1 }}
+                  onClick={toggleMenu}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  className="w-full"
+                >
+                  {currentUser && (
+                    <Button
+                      onClick={() => {
+                        handleSignout();
+                        toggleMenu();
+                      }}
+                      className="w-32 mx-auto mt-2"
+                    >
+                      Sign Out
+                    </Button>
+                  )}
                 </motion.div>
               </div>
             </motion.div>

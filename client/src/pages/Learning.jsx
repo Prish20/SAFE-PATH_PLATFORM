@@ -6,7 +6,6 @@ import { Button, Modal } from "flowbite-react";
 import ResponsiveHeader from "../components/ResponsiveHeader";
 import useWindowSize from "../Hooks/useWindowSize";
 import { useSelector } from "react-redux";
-import ResponsiveNav from "../components/ResponsiveNav";
 
 
 export default function LearningPage() {
@@ -53,7 +52,7 @@ export default function LearningPage() {
   return (
     <div className="p-4 max-w-screen-lg mx-auto min-h-screen">
       <div className="mb-5">
-        {size.width < 768 && (currentUser.isAdmin ? <ResponsiveNav /> : <ResponsiveHeader />)}
+        {size.width < 768 && (currentUser.isAdmin ? <ResponsiveHeader /> : <ResponsiveHeader />)}
       </div>
       <h1 className="text-3xl font-bold mb-6 text-center">Eucational Posts</h1>
       <div className="flex flex-col lg:flex-row gap-4">

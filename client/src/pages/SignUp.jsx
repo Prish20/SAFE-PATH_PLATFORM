@@ -2,6 +2,7 @@ import { Alert, Button, Spinner } from "flowbite-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Oauth from "../components/Oauth";
+import { SiHomebridge } from "react-icons/si";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({});
@@ -41,11 +42,7 @@ const SignUp = () => {
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
         <div className="flex flex-col items-center mb-6">
-          <img
-            src="../public/images/logo.webp"
-            alt="SafePath Logo"
-            className="h-16 mb-4 rounded-lg"
-          />
+        <SiHomebridge  className="w-20 h-20 mb-2 rounded-lg" />
           <span className="self-center ">
             <h2 className="text-2xl font-bold">Create an account</h2>
           </span>

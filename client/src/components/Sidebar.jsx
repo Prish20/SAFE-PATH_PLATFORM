@@ -23,7 +23,7 @@ const Sidebar = () => {
   return (
     <section className="flex gap-6">
       <div
-        className={`bg-[#0e0e0e] ml-2 mt-5 mb-5 min-h-screen relative rounded-3xl ${
+        className={`bg-[#0e0e0e] ml-2 mt-5 mb-5 min-h-screen fixed rounded-3xl ${
           open ? "w-72" : "w-16"
         } duration-500 text-gray-100 px-4`}
       >

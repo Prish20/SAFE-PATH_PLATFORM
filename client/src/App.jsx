@@ -10,6 +10,8 @@ import EducationContent from "./pages/EducationContent";
 import UpdatePost from "./pages/updatePost";
 import IncidentsPage from "./pages/Incidents";
 import LearningPage from "./pages/Learning";
+import AboutUs from "./pages/AboutUs";
+import ContactForm from "./pages/ContactForm";
 
 const App = () => {
   return (
@@ -20,6 +22,8 @@ const App = () => {
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/contact-us" element={<ContactForm />} />
           <Route element={<PrivateRoute />}>
             <Route path="/incidents" element={<IncidentsPage />} />
             <Route path="/learning" element={<LearningPage />} />
