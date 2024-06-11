@@ -12,8 +12,11 @@ import IncidentsPage from "./pages/Incidents";
 import LearningPage from "./pages/Learning";
 import AboutUs from "./pages/AboutUs";
 import ContactForm from "./pages/ContactForm";
+import IncidentList from "./components/IncidentLIst";
+import { useState } from "react";
 
 const App = () => {
+  const [selectedIncident, setSelectedIncident] = useState(null);
   return (
     <BrowserRouter>
       <MainLayout>
@@ -28,6 +31,16 @@ const App = () => {
             <Route path="/incidents" element={<IncidentsPage />} />
             <Route path="/learning" element={<LearningPage />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route
+              path="/incidents"
+              element={<IncidentsPage selectedIncident={selectedIncident} />}
+            />
+            <Route
+              path="/incident-list"
+              element={
+                <IncidentList setSelectedIncident={setSelectedIncident} />
+              }
+            />
           </Route>
           <Route element={<OnlyAdminPrivateRoute />}>
             <Route path="/education-content" element={<EducationContent />} />

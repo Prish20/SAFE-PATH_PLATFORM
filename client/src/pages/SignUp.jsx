@@ -1,4 +1,4 @@
-import { Alert, Button, Spinner } from "flowbite-react";
+import { Button, Spinner } from "flowbite-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Oauth from "../components/Oauth";
@@ -42,7 +42,7 @@ const SignUp = () => {
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
         <div className="flex flex-col items-center mb-6">
-        <SiHomebridge  className="w-20 h-20 mb-2 rounded-lg" />
+          <SiHomebridge className="w-20 h-20 mb-2 rounded-lg" />
           <span className="self-center ">
             <h2 className="text-2xl font-bold">Create an account</h2>
           </span>
@@ -104,9 +104,12 @@ const SignUp = () => {
           </p>
         </div>
         {errorMessage && (
-          <Alert className="mt-5" color="failure">
+          <div
+            className="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800 text-center m-5"
+            role="alert"
+          >
             {errorMessage}
-          </Alert>
+          </div>
         )}
       </div>
     </div>

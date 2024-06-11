@@ -54,8 +54,8 @@ export default function LearningPage() {
       <div className="mb-5">
         {size.width < 768 && (currentUser.isAdmin ? <ResponsiveHeader /> : <ResponsiveHeader />)}
       </div>
-      <h1 className="text-3xl font-bold mb-6 text-center">Eucational Posts</h1>
-      <div className="flex flex-col lg:flex-row gap-4">
+      <h1 className="text-3xl font-bold mb-6 text-center">Learning Hub</h1>
+      <div className="flex flex-col lg:flex-row gap-4 md:ml-20">
         <div className=" max-h-[calc(100vh-150px)] overflow-y-auto scrollbar-hidden">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
             {Array.isArray(posts) && posts.length > 0 ? (
