@@ -5,10 +5,12 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import { Spinner } from "flowbite-react";
 import ResponsiveNav from "../components/ResponsiveNav";
 import PropTypes from "prop-types";
+import useWindowSize from "../Hooks/useWindowSize";
 
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN_PUB;
 
 export default function IncidentsPage({ selectedIncident }) {
+  const size = useWindowSize();
   const [incidents, setIncidents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -110,14 +112,15 @@ export default function IncidentsPage({ selectedIncident }) {
 
   return (
     <div>
+      {/* ResponsiveNav component is used to display the navigation bar */}
       <div className="mb-4">
-        <ResponsiveNav />
+      {size.width < 768 && < ResponsiveNav/>}
       </div>
       <h1 className="text-3xl font-bold mb-6 text-center">
         Reported Incidents
       </h1>
       <div className="flex flex-col gap-4">
-        <div className="h-[85vh] ml-32 mr-20">
+        <div className="h-[85vh] md:ml-32 md:mr-20">
           <div
             ref={mapContainerRef}
             className="h-[87vh] rounded-lg shadow-lg"
